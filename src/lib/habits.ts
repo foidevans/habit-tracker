@@ -1,6 +1,5 @@
 import { Habit } from '@/types/habit';
 import { getHabits, saveHabits } from '@/lib/storage';
-import { getHabitSlug } from '@/lib/slug';
 
 export function toggleHabitCompletion(habit: Habit, date: string): Habit {
   const hasDate = habit.completions.includes(date);
