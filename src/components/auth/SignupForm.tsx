@@ -39,7 +39,7 @@ export default function SignupForm() {
         <div className="mb-4">
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-black mb-1"
+            className="block text-sm font-medium text-gray-700 mb-1"
           >
             Email
           </label>
@@ -57,7 +57,7 @@ export default function SignupForm() {
         <div className="mb-6">
           <label
             htmlFor="password"
-            className="block text-sm font-medium text-black mb-1"
+            className="block text-sm font-medium text-gray-700 mb-1"
           >
             Password
           </label>
