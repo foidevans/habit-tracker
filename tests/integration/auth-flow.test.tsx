@@ -33,8 +33,7 @@ describe('auth flow', () => {
     const session = JSON.parse(localStorage.getItem('habit-tracker-session')!);
     expect(session).not.toBeNull();
     expect(session.email).toBe('favour@test.com');
-    expect(mockPush).toHaveBeenCalledWith('/dashboard');
-  });
+expect(mockReplace).toHaveBeenCalledWith('/dashboard');  });
 it('shows an error for duplicate signup email', () => {
   // first signup
   const users = [{
@@ -79,8 +78,7 @@ it('shows an error for duplicate signup email', () => {
     const session = JSON.parse(localStorage.getItem('habit-tracker-session')!);
     expect(session).not.toBeNull();
     expect(session.email).toBe('favour@test.com');
-    expect(mockPush).toHaveBeenCalledWith('/dashboard');
-  });
+expect(mockReplace).toHaveBeenCalledWith('/dashboard');  });
 
   it('shows an error for invalid login credentials', () => {
     render(<LoginForm />);

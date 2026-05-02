@@ -24,7 +24,7 @@ export default function LoginForm() {
       return;
     }
 
-    router.push(ROUTES.dashboard);
+router.replace('/dashboard');
   }
 
   return (

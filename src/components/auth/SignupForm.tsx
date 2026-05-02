@@ -23,8 +23,8 @@ export default function SignupForm() {
       setLoading(false);
       return;
     }
+    router.replace('/dashboard');
 
-    router.push(ROUTES.dashboard);
   }
 
   return (

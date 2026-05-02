@@ -1,11 +1,15 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { getSession } from '@/lib/storage';
-import { ROUTES } from '@/lib/constants';
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { getSession } from "@/lib/storage";
+import { ROUTES } from "@/lib/constants";
 
-export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
+export default function ProtectedRoute({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const router = useRouter();
   const [checking, setChecking] = useState(true);
 
@@ -13,7 +17,7 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
     const session = getSession();
 
     if (!session) {
-      router.push(ROUTES.login);
+      router.replace("/login");
     } else {
       setChecking(false);
     }

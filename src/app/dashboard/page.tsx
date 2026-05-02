@@ -8,7 +8,7 @@ import HabitForm from '@/components/habits/HabitForm';
 import { getSession } from '@/lib/storage';
 import { getUserHabits, createHabit } from '@/lib/habits';
 import { logOut } from '@/lib/auth';
-import { ROUTES, APP_NAME } from '@/lib/constants';
+import { ROUTES } from '@/lib/constants';
 import { Habit } from '@/types/habit';
 
 export default function DashboardPage() {
@@ -30,15 +30,16 @@ export default function DashboardPage() {
   function handleCreate(name: string, description: string) {
     const session = getSession();
     if (!session) return;
+    // dashboard filters habits by userId
     createHabit(session.userId, name, description);
     setShowForm(false);
     loadHabits();
   }
 
-  function handleLogOut() {
-    logOut();
-    router.push(ROUTES.login);
-  }
+function handleLogOut() {
+  logOut();
+  router.replace('/login');
+}
 
   return (
     <ProtectedRoute>
@@ -47,7 +48,7 @@ export default function DashboardPage() {
         className="min-h-screen bg-gray-50"
       >
         <header className="bg-white border-b border-gray-200 px-4 py-4 flex items-center justify-between">
-          <h1 className="font-bold text-lg">{APP_NAME}</h1>
+          <h1 className="font-bold text-lg">Habit Tracker</h1>
           <button
             data-testid="auth-logout-button"
             onClick={handleLogOut}

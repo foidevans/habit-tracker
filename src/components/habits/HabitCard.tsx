@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Habit } from '@/types/habit';
-import { getHabitSlug } from '@/lib/slug';
-import { calculateCurrentStreak } from '@/lib/streaks';
-import { deleteHabit, completeHabit, updateHabit } from '@/lib/habits';
-import HabitForm from '@/components/habits/HabitForm';
+import { useState } from "react";
+import { Habit } from "@/types/habit";
+import { getHabitSlug } from "@/lib/slug";
+import { calculateCurrentStreak } from "@/lib/streaks";
+import { deleteHabit, completeHabit, updateHabit } from "@/lib/habits";
+import HabitForm from "@/components/habits/HabitForm";
 
 type HabitCardProps = {
   habit: Habit;
@@ -17,7 +17,7 @@ export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   const slug = getHabitSlug(habit.name);
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split("T")[0];
   const isCompletedToday = habit.completions.includes(today);
   const streak = calculateCurrentStreak(habit.completions);
 
@@ -51,7 +51,7 @@ export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
     <div
       data-testid={`habit-card-${slug}`}
       className={`rounded-2xl shadow p-5 mb-4 transition ${
-        isCompletedToday ? 'bg-green-50 border border-green-200' : 'bg-white'
+        isCompletedToday ? "bg-green-50 border border-green-200" : "bg-white"
       }`}
     >
       <div className="flex items-start justify-between mb-3">
@@ -65,7 +65,7 @@ export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
           data-testid={`habit-streak-${slug}`}
           className="text-sm font-medium text-orange-500"
         >
-          🔥 {streak} day{streak !== 1 ? 's' : ''}
+          Streak: {streak}{" "}
         </span>
       </div>
 
@@ -98,11 +98,11 @@ export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
           onClick={handleComplete}
           className={`flex-1 text-sm py-2 rounded-lg font-medium transition ${
             isCompletedToday
-              ? 'bg-green-500 text-white hover:bg-green-600'
-              : 'bg-black text-white hover:bg-gray-800'
+              ? "bg-green-500 text-white hover:bg-green-600"
+              : "bg-black text-white hover:bg-gray-800"
           }`}
         >
-          {isCompletedToday ? '✓ Done' : 'Mark Done'}
+          {isCompletedToday ? "✓ Done" : "Mark Done"}
         </button>
         <button
           data-testid={`habit-edit-${slug}`}

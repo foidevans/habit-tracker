@@ -1,25 +1,22 @@
 export function calculateCurrentStreak(completions: string[], today?: string): number {
   const todayDate = today ?? new Date().toISOString().split('T')[0];
-
-  const unique = [...new Set(completions)];
-  const sorted = unique.sort();
-
-  if (!sorted.includes(todayDate)) {
+  const uniqueCompletions = [...new Set(completions)];
+  
+  // streak checks today before counting
+  if (!uniqueCompletions.includes(todayDate)) {
     return 0;
   }
 
+  const sorted = uniqueCompletions.sort();
+  const completionSet = new Set(sorted);
   let streak = 0;
-  let current = new Date(todayDate);
+  let currentDate = todayDate;
 
-  while (true) {
-    const dateStr = current.toISOString().split('T')[0];
-
-    if (!sorted.includes(dateStr)) {
-      break;
-    }
-
-    streak++;
-    current.setDate(current.getDate() - 1);
+  while (completionSet.has(currentDate)) {
+    streak += 1;
+    const date = new Date(`${currentDate}T00:00:00.000Z`);
+    date.setUTCDate(date.getUTCDate() - 1);
+    currentDate = date.toISOString().slice(0, 10);
   }
 
   return streak;
